@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>New webpage</title>
+    </head>
+    <body>
+<h1>Mini todo list📋</h1>
+<p>Create your todo list here!</p>
+<button id="add-a-task-btn">Add a task</button>
+<script>
+    var TaskButton = document.getElementById("add-a-task-btn");
+
+    var TaskButtonClick = function () {
+
+        // Create heading only once
+        if (!document.getElementById("task-heading")) {
+            var heading = document.createElement("h3");
+            heading.id = "task-heading";
+            heading.innerHTML = "Write your task in the input below";
+            document.body.appendChild(heading);
+        }
+
+        // Always add a new input
+        var input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = "New task...";
+        document.body.appendChild(input);
+
+        // Make an okay button
+        var okbtn = document.createElement("button");
+        okbtn.textContent = "OK";
+        okbtn.id = "okbtnid";
+        document.body.appendChild(okbtn);
+
+        okbtn.addEventListener("click", function() {
+            var text = input.value;
+            var newHeading = document.createElement("h3");
+            newHeading.innerText = text; 
+
+            // FIX: checkbox right next to the text
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            // Make a row container for checkbox + text
+            var taskDiv = document.createElement("div");
+            taskDiv.style.display = "flex";
+            taskDiv.style.alignItems = "center";
+            taskDiv.style.gap = "8px";
+
+            taskDiv.appendChild(checkbox);
+            taskDiv.appendChild(newHeading);
+
+            document.body.appendChild(taskDiv);
+
+            // Check-off behavior
+            checkbox.addEventListener("change", function() {
+                if (checkbox.checked) {
+                    newHeading.style.textDecoration = "line-through";
+                    newHeading.style.opacity = "0.6";
+                } else {
+                    newHeading.style.textDecoration = "none";
+                    newHeading.style.opacity = "1";
+                }
+            });
+
+            // Remove input + OK button + instructions
+            input.remove();
+            okbtn.remove();
+            var instructionHeading = document.getElementById("task-heading");
+            if (instructionHeading) instructionHeading.remove();
+        });
+    };
+
+    TaskButton.addEventListener("click", TaskButtonClick);
+</script>
+    </body>
+</html>
