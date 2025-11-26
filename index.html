@@ -3,11 +3,34 @@
     <head>
         <meta charset="utf-8">
         <title>New webpage</title>
+        <style>
+            body {
+                background-color:#dde0ff;
+                text-align:center;
+            }
+            button {
+                background-color:#02e8f1;
+                color:#b0abc2;
+                font-family:cursive;
+            }
+            .todo-text {
+                font-family:fantasy;
+            }
+            h1,h3 {
+                font-family:cursive;
+            }
+            #htmldiv {
+                background-color:#c9f7ea;
+                border-radius:13%;
+            }
+        </style>
     </head>
     <body>
+<div id="htmldiv">
 <h1>Mini todo list📋</h1>
 <p>Create your todo list here!</p>
 <button id="add-a-task-btn">Add a task</button>
+</div>
 <script>
     var TaskButton = document.getElementById("add-a-task-btn");
 
@@ -70,9 +93,13 @@
             var instructionHeading = document.getElementById("task-heading");
             if (instructionHeading) instructionHeading.remove();
         });
+        newHeading.classList.add("todo-text");
     };
 
     TaskButton.addEventListener("click", TaskButtonClick);
 </script>
     </body>
 </html>
+
+
+
